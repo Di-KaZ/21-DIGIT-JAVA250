@@ -1,8 +1,15 @@
 package com.example.demo.entity;
 
-import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * Entity représentant un client.
@@ -19,6 +26,9 @@ public class Client {
 
     @Column
     private String prenom;
+
+    @Column(name = "date_naissance")
+    private LocalDate dateNaissance;
 
     @OneToMany(mappedBy = "client")
     private Set<Facture> factures = new HashSet<>();
@@ -54,6 +64,12 @@ public class Client {
     public void setFactures(Set<Facture> factures) {
         this.factures = factures;
     }
+
+    public LocalDate getDateNaissance() {
+        return dateNaissance;
+    }
+
+    public void setDateNaissance(LocalDate dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
 }
-
-

@@ -7,12 +7,13 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.example.demo.service.export.ArticleExportCVSService;
-import com.example.demo.service.export.ArticleExportXLSXService;
+import com.example.demo.service.export.ClientExportCVSService;
+import com.example.demo.service.export.ClientExportXLSXService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -20,30 +21,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("export")
-public class ExportArticleController {
+public class ExportClientController {
 
     @Autowired
-    private ArticleExportCVSService articleExportCVSService;
+    private ClientExportCVSService articleExportCVSService;
 
     @Autowired
-    private ArticleExportXLSXService articleExportXLSXService;
+    private ClientExportXLSXService articleExportXLSXService;
 
     /**
      * Export des articles au format CSV.
      */
-    @GetMapping("/articles/csv")
+    @GetMapping("/clients/csv")
     public void articlesCSV(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/csv");
-        response.setHeader("Content-Disposition", "attachment; filename=\"export-articles.csv\"");
+        response.setHeader("Content-Disposition", "attachment; filename=\"export-clients.csv\"");
         PrintWriter writer = response.getWriter();
         articleExportCVSService.export(writer);
     }
 
-    @GetMapping("/articles/xlsx")
+    @GetMapping("/clients/xlsx")
     public void articlesXLSX(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("application/vnd.ms-excel");
-        response.setHeader("Content-Disposition", "attachment; filename=\"export-articles.xlsx\"");
+        response.setHeader("Content-Disposition", "attachment; filename=\"export-clients.xlsx\"");
         OutputStream outputStream = response.getOutputStream();
         articleExportXLSXService.export(outputStream);
+    }
+
+    /** Méthode utilisée pour l'export facture (point n°5) */
+    @GetMapping("/clients/{id}/factures/xlsx")
+    public void clientGetFacturesXLSX(@PathVariable Long id, HttpServletResponse response) throws IOException {
+        response.setContentType("application/vnd.ms-excel");
+        response.setHeader("Content-Disposition", "attachment; filename=\"client-" + id + "-factures.xlsx\"");
+        OutputStream outputStream = response.getOutputStream();
+        articleExportXLSXService.export(outputStream, id);
     }
 }
