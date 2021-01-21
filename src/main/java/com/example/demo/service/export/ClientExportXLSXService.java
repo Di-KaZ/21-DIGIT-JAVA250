@@ -160,11 +160,11 @@ public class ClientExportXLSXService extends BaseXLSXService {
                 createCell(actualRow, NOM, "Nom");
                 createCell(actualRow, PRENOM, "Prénom");
                 createCell(actualRow, AGE, "Age");
-
                 // on boucle sur les articles et creer une row pour chaqun d'entre eux + 3 cell
                 // pour mettre le valeurs dedans
                 setActiveStyle("BODY");
                 for (Client client : clients) {
+                    actualRow.createCell(0).setCellValue(client.getDateNaissance().toString());
                     actualRow = sheet.createRow(actualRowCount++);
                     createCell(actualRow, NOM, client.getNom());
                     createCell(actualRow, PRENOM, client.getPrenom());

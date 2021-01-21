@@ -57,7 +57,6 @@ public class InitData implements ApplicationListener<ApplicationReadyEvent> {
         Set<LigneFacture> lignes = new HashSet<>();
 
         for (Map.Entry m : articles.entrySet()) {
-            System.out.println("hey !");
             ligne = new LigneFacture();
             ligne.setArticle((Article) m.getValue());
             ligne.setQuantite((Integer) m.getKey());
