@@ -1,6 +1,10 @@
 package com.example.demo.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * Entity représentant un article.
@@ -20,6 +24,9 @@ public class Article {
 
     @Column
     private int stock;
+
+    @Column
+    private String description;
 
     public Long getId() {
         return id;
@@ -51,5 +58,13 @@ public class Article {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

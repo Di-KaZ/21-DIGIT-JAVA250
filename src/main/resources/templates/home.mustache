@@ -12,25 +12,25 @@
 
 
     <hr/>
-    <h1>Articles dans le stock <a href="/articles/csv">csv</a>-<a href="/articles/xlsx">xlsx</a>-<a href="/articles/pdf">pdf</a></h1>
+    <h1>Articles dans le stock <a href="/export/articles/csv">csv</a>-<a href="/export/articles/xlsx">xlsx</a>-<a href="/export/articles/pdf">pdf</a></h1>
     <hr/>
 
     {{>articles}}
 
     <hr/>
-    <h1>Clients <a href="/clients/csv">csv</a>-<a href="/clients/xlsx">xlsx</a>-<a>pdf</a></h1>
+    <h1>Clients <a href="/export/clients/csv">csv</a>-<a href="/export/clients/xlsx">xlsx</a>-<a>pdf</a></h1>
     <hr/>
 
     {{>clients}}
 
     <hr/>
-    <h1>Factures <a href="/factures/xlsx">xlsx</a></h1>
+    <h1>Factures <a href="/export/factures/xlsx">xlsx</a></h1>
     <hr/>
 
 
     {{#factures}}
 
-        <h2>Facture numéro {{id}} de {{client.nom}} {{client.prenom}} <a href="/factures/{{id}}/pdf">pdf</a></h2>
+        <h2>Facture numéro {{id}} de {{client.nom}} {{client.prenom}} <a href="/export/factures/{{id}}/pdf">pdf</a></h2>
         {{>factures}}
     {{/factures}}
 </body>
